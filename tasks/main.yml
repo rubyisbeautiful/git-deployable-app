@@ -1,0 +1,19 @@
+---
+
+- include_tasks: setup_remotes.yml
+  with_dict: "{{ gda_apps }}"
+  when: gda_apps is defined
+  tags:
+    - setup_remotes
+
+- include_tasks: setup_locals.yml
+  with_dict: "{{ gda_apps }}"
+  when: gda_apps is defined
+  tags:
+    - setup_locals
+
+- include_tasks: deploy_apps.yml
+  with_dict: "{{ gda_apps }}"
+  when: gda_apps is defined
+  tags:
+    - deploy_apps

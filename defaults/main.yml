@@ -1,0 +1,14 @@
+---
+
+gda_base_local_path: /tmp
+gda_base_remote_path: /apps
+gda_repo_version: master
+gda_repo_force: false
+gda_repo_depth: 1
+gda_repo_clone: true
+
+gda_archive_format: gz
+
+gda_owner: nobody
+gda_group: nogroup
+gda_mode: 0644

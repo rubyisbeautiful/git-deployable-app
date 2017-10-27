@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: rubyisbeautiful
+  description: a simple git-based app deploy solution
+  company: rubyisbeautiful
+  license: MIT
+  min_ansible_version: 1.9
+  # Only including platforms that have actually been used/tested
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  categories:
+    - cloud
+    - web
+dependencies: []

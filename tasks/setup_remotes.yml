@@ -1,0 +1,18 @@
+---
+
+- set_fact:
+    full_app_path: "{{ item.value.path }}"
+  when: item.value.path | is_abs
+
+- set_fact:
+    full_app_path: "{{ gda_base_remote_path }}/{{ item.value.path }}"
+  when: not (item.value.path | is_abs)
+
+- name: ensure {{ item.value.path }} exists
+  become: true
+  file:
+    state: directory
+    recurse: true
+    path: "{{ full_app_path }}"
+    owner: "{{ item.value.owner | default(gda_owner) }}"
+    group: "{{ item.value.group | default(gda_group) }}"

@@ -1,0 +1,23 @@
+---
+
+- set_fact:
+    archive_name: "{{ item.key }}.{{ item.value.archive_format | default(gda_archive_format) }}"
+    archive_path: "{{ item.value.repo_local_path | default(gda_default_local_path) }}/{{ item.key }}.{{ item.value.archive_format | default(gda_archive_format) }}"
+
+- set_fact:
+    full_app_path: "{{ item.value.path }}"
+  when: item.value.path | is_abs
+
+- set_fact:
+    full_app_path: "{{ gda_base_remote_path }}/{{ item.value.path }}"
+  when: not (item.value.path | is_abs)
+
+
+- name: deploy {{ item.key }}
+  become: true
+  unarchive:
+    src: "{{ archive_path }}"
+    dest: "{{ full_app_path }}"
+    owner: "{{ item.value.owner | default(gda_owner) }}"
+    group: "{{ item.value.group | default(gda_group) }}"
+    mode: "{{ item.value.mode | default(gda_mode) }}"
