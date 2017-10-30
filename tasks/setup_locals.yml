@@ -26,7 +26,7 @@
 
 - name: prepare deployable archive of {{ item.key }}
   archive:
-    path: "{{ item.value.repo_local_path | default(gda_default_local_path) }}"
+    path: "{{ item.value.repo_local_path | default(gda_default_local_path) }}/*"
     dest: "{{ item.value.repo_local_path | default(gda_default_local_path) }}/{{ archive_name }}"
     exclude_path: ".git"
   when: item.value.subdir is undefined
