@@ -21,6 +21,7 @@
     path: "{{ item.repo_local_path | default(gda_default_local_path) }}/{{ item.value.subdir }}/*"
     dest: "{{ item.repo_local_path | default(gda_default_local_path) }}/{{ archive_name }}"
     exclude_path: ".git"
+    format: "{{ item.value.archive_format | default(gda_archive_format) }}"
   when: item.value.subdir is defined
   delegate_to: 127.0.0.1
 
@@ -29,6 +30,7 @@
     path: "{{ item.value.repo_local_path | default(gda_default_local_path) }}/*"
     dest: "{{ item.value.repo_local_path | default(gda_default_local_path) }}/{{ archive_name }}"
     exclude_path: ".git"
+    format: "{{ item.value.archive_format | default(gda_archive_format) }}"
   when: item.value.subdir is undefined
   delegate_to: 127.0.0.1
   
