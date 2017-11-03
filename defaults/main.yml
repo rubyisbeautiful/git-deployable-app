@@ -11,4 +11,8 @@ gda_archive_format: gz
 
 gda_owner: nobody
 gda_group: nogroup
-gda_mode: 0644
+gda_archive_mode: 0644
+
+gda_fix_dir_permissions: true
+gda_file_mode: 0640 # future use
+gda_dir_mode: 0755

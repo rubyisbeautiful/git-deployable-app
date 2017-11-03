@@ -20,4 +20,32 @@
     dest: "{{ full_app_path }}"
     owner: "{{ item.value.owner | default(gda_owner) }}"
     group: "{{ item.value.group | default(gda_group) }}"
-    mode: "{{ item.value.mode | default(gda_mode) }}"
+    mode: "{{ item.value.mode | default(gda_archive_mode) }}"
+  tags:
+    - deploy_apps
+
+- name: find directories to fix permissions
+  become: true
+  find:
+    paths: "{{ full_app_path }}"
+    recurse: true
+    file_type: directory
+  register: dirs_to_fix
+  when: gda_fix_dir_permissions
+  tags:
+    - deploy_apps
+
+- name: fix directory permissions
+  become: true
+  file:
+    state: directory
+    path: "{{ fixme.path }}"
+    owner: "{{ item.value.owner | default(gda_owner) }}"
+    group: "{{ item.value.group | default(gda_group) }}"
+    mode: "{{ item.value.dir_mode | default(gda_dir_mode) }}"
+  with_items: "{{ dirs_to_fix.files }}"
+  loop_control:
+    loop_var: fixme
+  when: gda_fix_dir_permissions
+  tags:
+    - deploy_apps

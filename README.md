@@ -98,8 +98,20 @@ default is `nobody`.
 `gda_group`
 default is `nogroup`
 
-`gda_mode`
-default is `0644`
+`gda_archive_mode`
+default is `0644` and is passed directly to Ansible's archive module
+
+`gda_dir_mode`
+default is 0755 works together with `gda_fix_dir_permissions`
+
+`gda_fix_dir_permissions`
+default is true. because the local / controller will not necessarily have the
+users as the remote / target nodes, the ownership has to be set post hoc.  And
+in many cases, for some reasons probably related to the same cause, the mode
+of the directories as well.  Leave this to true to perform the post deploy fix,
+set to false to disable it.  A future version will attempt fixes on files,
+which needs to be more nuanced perhaps.  You can of course do any / change any
+of this in post tasks.
 
 
 Dependencies
