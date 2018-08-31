@@ -1,5 +1,8 @@
 ---
-- hosts: localhost
-  remote_user: root
-  roles:
-    - git-deployable-app
+
+- hosts: all
+
+  tasks:
+
+    - include_role:
+        name: role_under_test

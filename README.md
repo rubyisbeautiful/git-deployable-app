@@ -1,4 +1,7 @@
-## git-deployable-app
+# git-deployable-app
+[![Build Status](https://semaphoreci.com/api/v1/rubyisbeautiful/git-deployable-app/branches/master/badge.svg)](https://semaphoreci.com/rubyisbeautiful/git-deployable-app)
+[![Build Status](https://travis-ci.org/rubyisbeautiful/git-deployable-app.svg?branch=master)](https://travis-ci.org/rubyisbeautiful/git-deployable-app)
+
 
 This role can deploy git based deployments
 
