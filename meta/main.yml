@@ -9,7 +9,14 @@ galaxy_info:
   platforms:
   - name: EL
     versions:
+    - 6
     - 7
+  - name: Fedora
+    versions:
+    - 27
+  - name: Ubuntu
+    versions:
+    - xenial
   categories:
     - cloud
     - web
